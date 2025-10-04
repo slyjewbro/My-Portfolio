@@ -1,0 +1,307 @@
+/* Обновленный CSS */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('/static/images/background.jpg') center/cover fixed;
+}
+
+.container {
+    display: flex; /* Включаем Flexbox */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    gap: 40px; /* Расстояние между колонками */
+    align-items: flex-start; /* Выравнивание по верху */
+}
+
+/* Левая колонка с фото */
+.left-column {
+    flex: 0 0 350px; /* Фиксированная ширина */
+    position: sticky;
+    top: 40px; /* Прилипает при прокрутке */
+    text-align: center;
+    animation: slideInLeft 0.8s ease-out 0.2s;
+}
+
+/* Правая колонка с контентом */
+.right-column {
+    flex: 1; /* Занимает все оставшееся пространство */
+    animation: slideInRight 0.8s ease-out 0.2s;
+}
+
+@keyframes slideInLefty {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Стили для фото */
+.profile-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.profile-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* Стили для текстовых блоков */
+.content-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 35px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 20px 15px;
+    }
+    
+    .left-column {
+        position: static;
+        flex: none;
+        width: 100%;
+    }
+    
+    .profile-photo {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Стили для тагов навыков */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill-tag {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+}
+
+/* Стили для контактов в сайдбаре */
+.contacts-sidebar {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.contacts-sidebar h3 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    text-shadow: 
+        0 0 10px rgba(52, 152, 219, 0.8),
+        0 0 20px rgba(52, 152, 219, 0.5);
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contacts-sidebar a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contacts-sidebar a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.tagline {
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+.social-buttons-full {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%; /* Добавляем ширину */
+}
+
+.social-btn-full {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрируем содержимое */
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-weight: 500;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto; /* Центрируем саму кнопку */
+}
+
+.social-btn-full i {
+    margin-right: 12px;
+    font-size: 1.4em;
+}
+
+.social-btn-full span {
+    font-size: 1.1em;
+}
+.social-buttons-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем кнопки по горизонтали */
+    gap: 10px;
+    width: 100%;
+}
+
+.social-btn-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px; /* Закругленные углы */
+    text-decoration: none;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-weight: 500;
+    width: 60%; /* Ширина 60% от родителя (можно настроить) */
+    min-width: 200px; /* Минимальная ширина */
+    max-width: 250px; /* Максимальная ширина */
+    box-sizing: border-box;
+}
+
+.social-btn-compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    width: 65%; /* Немного увеличиваем при наведении */
+}
+
+.social-btn-compact i {
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.social-btn-compact span {
+    font-size: 1em;
+}
+/* Стили для подвала */
+.social-footer {
+    background: rgba(68, 135, 190, 0.8);
+    padding: 50px 20px;
+    margin-top: 50px;
+    border-top: 3px solid #3498db;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ← Ключевое свойство! */
+    justify-content: center;
+}
+
+.footer-content h3 {
+    color: white;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+}
+
+.footer-social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* ← Выравниваем по вертикали */
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    text-decoration: none;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-weight: 600;
+    font-size: 1.1em;
+    min-width: 150px;
+}
+
+.footer-social-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(99, 58, 175, 0.3);
+}
+
+.footer-social-btn i {
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 30px;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+}

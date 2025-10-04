@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мое резюме</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<body>
+    <div class="container">
+        <!-- Левая колонка с фото -->
+        <div class="left-column">
+            <div class="profile-card">
+                <img src="{{ url_for('static', filename='images/my_photo.jpg') }}" 
+                     alt="Моя фотография" 
+                     class="profile-photo">
+                <h1>{{ data.name }}</h1>
+                <p class="tagline">Начинающий разработчик</p>
+                
+                <!-- Контакты в левой колонке -->
+                <div class="contacts-sidebar">
+                    <h2>Контакты</h2>
+                    <p>📧 <a href="mailto:{{ data.contacts.email }}">{{ data.contacts.email }}</a></p>
+                    <p>🐙 <a href="{{ data.contacts.github }}">GitHub</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка с контентом -->
+        <div class="right-column">
+            <section class="content-section" id="about">
+                <h2>👋 Обо мне</h2>
+                <p>{{ data.about_me }}</p>
+            </section>
+            
+            <section class="content-section" id="skills">
+                <h2>💻 Навыки</h2>
+                <div class="skills-grid">
+                    {% for skill in data.skills %}
+                    <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </section>
+            
+            <!-- Дополнительная секция, если нужно -->
+            <section class="content-section" id="projects">
+                <h2>🚀 Проекты</h2>
+                <p>Скоро здесь появятся мои проекты...</p>
+            </section>
+        </div>
+    </div>
+    <footer class="social-footer">
+        <div class="footer-content">
+            <!-- Заголовок -->
+            <h3><i class="fas fa-share-alt"> Мои соцсети</i></h3>
+            
+            <!-- Блок с кнопками соцсетей -->
+            <div class="footer-social-buttons">
+                <a href="{{ data.contacts.github }}" class="footer-social-btn github" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                
+                <a href="{{ data.contacts.telegram }}" class="footer-social-btn telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram</span>
+                </a>
+                
+                <a href="{{ data.contacts.vk }}" class="footer-social-btn vk" target="_blank">
+                    <i class="fab fa-vk"></i>
+                    <span>ВКонтакте</span>
+                </a>
+            </div>
+            
+            <!-- Копирайт (опционально) -->
+            <p class="copyright">© 2025 {{ data.name }}</p>
+        </div>
+    </footer>        
+</body>
+</html>
