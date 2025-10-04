@@ -14,5 +14,5 @@
 3. Откройте http://localhost:5000 в браузере
 
 ## Контакты
-- Email: ваш-email@example.com
-- Telegram: @yourusername
+- Email: login47rus@gmail.com
+- Telegram: @slyjewbro
