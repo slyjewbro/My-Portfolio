@@ -13,7 +13,8 @@
 2. Запустите приложение: `python app.py`
 3. Откройте http://localhost:5000 в браузере
 UPD: появился сайт:)
-slyjewbro.pythonanywhere.com - пока 3 месяца посижу на этом хосте. В TODO добавлю создать свой сервак и закину на него визитку:)
+https://slyjewbro.pythonanywhere.com
+- пока 3 месяца посижу на этом хосте. В TODO добавлю создать свой сервак и закину на него визитку:)
 ## Контакты
 - Email: login47rus@gmail.com
 - Telegram: @slyjewbro
