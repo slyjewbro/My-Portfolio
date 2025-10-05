@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мое резюме</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="description" content="Персональный сайт-визитка начинающего разработчика">
+    <meta name="keywords" content="Python, Flask, разработчик, портфолио">
+    <meta property="og:title" content="Твое Имя - Разработчик">
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <body>
@@ -46,7 +49,10 @@
             <!-- Дополнительная секция, если нужно -->
             <section class="content-section" id="projects">
                 <h2>🚀 Проекты</h2>
-                <p>Скоро здесь появятся мои проекты...</p>
+                <a href="{{data.projects.live_url}}" class ="footer-social-btn My site" target="_blank">
+                    <i class=".contacts-sidebar h2">💼 Мой сайт-визитка</i>
+                </a>
+                <i class="footer-content projects">В скором времени появятся еще проекты</i>
             </section>
         </div>
     </div>
