@@ -139,10 +139,15 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('themeToggle');
     
-    // Проверяем сохраненную тему
+    // По умолчанию включаем темную тему
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    if (savedTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        updateButtonText('light');
+    } else {
+        // Если нет сохраненной темы или она 'dark' - включаем темную
         document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
         updateButtonText('dark');
     }
     
@@ -174,6 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-</script>      
+</script>  
 </body>
 </html>
