@@ -432,3 +432,33 @@ body {
 [data-theme="dark"] .copyright {
     color: rgba(255, 255, 255, 0.7);
 }
+.visit-counter {
+    background: var(--card-bg);
+    padding: 12px 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 15px 0;
+    border: 2px solid rgba(52, 152, 219, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.visit-counter i {
+    color: #3498db;
+    font-size: 1.1em;
+}
+
+/* Анимация для счетчика */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.visit-counter {
+    animation: pulse 2s infinite;
+}
