@@ -56,7 +56,7 @@ init_db()
 my_data = {
     "name": "Владимир Болотов",
     "about_me": "Привет! Я начинающий программист, увлекаюсь IT.",
-    "skills": ["Python", "HTML", "CSS", "Flask"],
+    "skills": ["Python", "HTML", "CSS", "Flask","Git+Github","Weak JavaScript"],
     "visit_count": 0,
     "contacts": {
         "email": "login47rus@gmail.com",
