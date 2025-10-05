@@ -90,18 +90,105 @@ def contact():
     # Здесь можно добавить отправку на email
     flash('Сообщение отправлено!', 'success')
     return redirect('/')
+def log_ip_to_file(ip_address, user_agent=""):
+    """Записывает IP-адрес в текстовый файл"""
+    try:
+        # Создаем папку logs если ее нет
+        if not os.path.exists('logs'):
+            os.makedirs('logs')
+        
+        # Создаем имя файла с текущей датой
+        today = datetime.now().strftime("%Y-%m-%d")
+        filename = f"logs/visitors_{today}.txt"
+        
+        # Формируем запись
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log_entry = f"{timestamp} - IP: {ip_address} - User Agent: {user_agent}\n"
+        
+        # Записываем в файл
+        with open(filename, 'a', encoding='utf-8') as f:
+            f.write(log_entry)
+            
+        print(f"Записан IP: {ip_address} в файл {filename}")
+        
+    except Exception as e:
+        print(f"Ошибка записи в файл: {e}")
 @app.route("/")
 def index():
+    # Получаем информацию о посетителе
     user_ip = request.remote_addr
     user_agent = request.headers.get('User-Agent', 'Unknown')
-    log_visit(user_ip, user_agent)
     
-    visit_count = get_visit_count()
+    # Логируем в базу данных (если есть)
+    try:
+        log_visit(user_ip, user_agent)
+    except:
+        pass  # Игнорируем ошибки БД если ее нет
     
-    # Обновляем данные для шаблона
-    my_data["visit_count"] = visit_count
+    # Логируем в текстовый файл
+    log_ip_to_file(user_ip, request.headers.get('User-Agent','Unknown'))
+    
+    # Обновляем счетчик если есть БД
+    try:
+        my_data["visit_count"] = get_visit_count()
+    except:
+        my_data["visit_count"] = "N/A"
     
     return render_template('index.html', data=my_data)
+@app.route("/logs")
+def view_logs():
+    """Показывает содержимое лог-файлов"""
+    try:
+        logs_content = []
+        
+        # Проверяем есть ли папка logs
+        if os.path.exists('logs'):
+            # Получаем все файлы логов
+            log_files = [f for f in os.listdir('logs') if f.startswith('visitors_') and f.endswith('.txt')]
+            log_files.sort(reverse=True)  # Сортируем по дате (новые сначала)
+            
+            # Читаем последние 3 файла
+            for log_file in log_files[:3]:
+                file_path = os.path.join('logs', log_file)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    logs_content.append(f"=== {log_file} ===\n{content}")
+        
+        return "<pre>" + "\n\n".join(logs_content) + "</pre>"
+    
+    except Exception as e:
+        return f"Ошибка чтения логов: {e}" 
+def log_detailed_visit(ip_address, request_info):
+    """Детальное логирование посещения"""
+    try:
+        if not os.path.exists('logs'):
+            os.makedirs('logs')
+        
+        today = datetime.now().strftime("%Y-%m-%d")
+        filename = f"logs/visitors_{today}.txt"
+        
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Собираем детальную информацию
+        log_entry = f"""
+=== НОВОЕ ПОСЕЩЕНИЕ ===
+Время: {timestamp}
+IP-адрес: {ip_address}
+Браузер: {request_info.headers.get('User-Agent', 'Unknown')}
+URL: {request_info.url}
+Метод: {request_info.method}
+Язык: {request_info.headers.get('Accept-Language', 'Unknown')}
+Реферер: {request_info.headers.get('Referer', 'No referer')}
+------------------------
+"""
+        
+        with open(filename, 'a', encoding='utf-8') as f:
+            f.write(log_entry)
+            
+        print(f"Детально записан IP: {ip_address}")
+        
+    except Exception as e:
+        print(f"Ошибка детальной записи: {e}")           
 # Запускаем сервер
 if __name__ == "__main__":
     app.run(debug=True)
