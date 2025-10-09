@@ -10,8 +10,10 @@
 
 ## Установка и запуск
 1. Установите зависимости: `pip install -r requirements.txt`
-2. Запустите приложение: `python app.py`
-3. Откройте http://localhost:5000 в браузере
+2. git clone https://github.com/slyjewbro/My-Portfolio/
+3. Запустите приложение: `python app.py`
+4. run
+5. Откройте http://localhost:5000 в браузере
 UPD: появился сайт:)
 https://slyjewbro.pythonanywhere.com
 - пока 3 месяца посижу на этом хосте. В TODO добавлю создать свой сервак и закину на него визитку:)
